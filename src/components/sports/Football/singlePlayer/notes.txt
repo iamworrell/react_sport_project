@@ -1,0 +1,2 @@
+withRouter is a functional compoenent that allows us to access
+the route paramater :id in PlayerDetails via this.props.params.id

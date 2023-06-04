@@ -1,0 +1,37 @@
+1. create database and collections for players
+2. create mongo model schema
+3. create api
+4. create form
+5. finish ui
+
+What to do after the base project?
+0. make it pretty
+
+1. use controllers with express router
+2. add sign up, login function
+2.1 add jwt
+3. add admin option
+3.1 add confirm email
+3.2 ensure email exists
+3.3 add password strength detector
+4. add forgot password w/ email & phone number
+5. add contact form for admins
+6. add faq's
+7. add google maps
+8. add image upload
+9. add search bar for other users in database
+10. add search bar to find athletes
+11 add search for teams, clubs, nationality
+12. filter search by nationality, sport
+13. add globe icon that rotates and shows top 10 athletes by country
+14. users can chat with admins
+15. each user has a profile that they can upload photos and text, bio, message other users,
+each profile displays what athletes the user added,
+16. Users are notified of messages they recieve.
+17. can follow each others
+18. users can see a feed of posts of those they follow have made.
+19. users can leave comments under athletes datasheet and like as well.
+
+nb. only admins can delete other people posts, but users can only delete posts he or she has made
+admins can also see which user made what posts and are notified of how many posts occured since their last log in time
+admins can also change the top 10 athletes by nationality
