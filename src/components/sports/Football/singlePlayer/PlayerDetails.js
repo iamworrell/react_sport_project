@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import withRouter from './withRouter';
 import axios from "axios";
+import Cookie from "js-cookie";
 
 class PlayerDetails extends Component{
     constructor(props){
@@ -17,6 +18,21 @@ class PlayerDetails extends Component{
         //Accessing the data property of the response Object
         //Storing data in the state property playerData 
         .then(result => {this.setState({playerData: result.data})}).catch((err) => console.log(err));
+
+        //Authentication Functionality
+        if(Cookie.get("jwt")==null) {
+            // navigate("/login");
+            window.location = '/login';
+        }else{
+        const data = await axios.post("http://localhost:5000", {}, {withCredentials:true});
+        if(!data) {
+                // removeCookie("jwt");
+                // navigate("/login");
+                window.location = '/login';
+        }else{
+            console.log(data.data.user);
+            this.setState({email: data.data.user});
+        }}
     }
 
     

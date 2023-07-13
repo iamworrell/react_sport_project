@@ -3,7 +3,8 @@ import FootballNavBar from "./NavBar";
 import {Link} from "react-router-dom";
 import axios from "axios";
 import gear from './images/gear_2.png';
-import trash_can from './images/trash_can.png'
+import trash_can from './images/trash_can.png';
+import Cookie from "js-cookie";
 
 
 class Football extends Component {
@@ -15,6 +16,7 @@ class Football extends Component {
         
         this.state = {
             footballPlayers: [],
+            email: '',
         }
     }
     
@@ -30,7 +32,7 @@ class Football extends Component {
     }
     
     //Block of Code Runs when the Page Loads
-    async componentDidMount() {
+    async componentWillMount() {
         //GET REQUEST
         await axios.get('http://localhost:5000/football/football')
             //then(([response Object]))
@@ -39,7 +41,24 @@ class Football extends Component {
                 //stores array of data in the state object footballPlayers
                 {this.setState({footballPlayers: dataFromDatabase.data})}
             }).catch((error) => {console.log(error)});
+
+        //Authentication Functionality
+        if(Cookie.get("jwt")==null) {
+            // navigate("/login");
+            window.location = '/login';
+        }else{
+        const data = await axios.post("http://localhost:5000", {}, {withCredentials:true});
+        if(!data) {
+                // removeCookie("jwt");
+                // navigate("/login");
+                window.location = '/login';
+        }else{
+            console.log(data.data.user);
+            this.setState({email: data.data.user});
+        }}
     };
+
+
 
     render(){
         

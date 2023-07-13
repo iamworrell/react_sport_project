@@ -36,6 +36,15 @@ h1 {
     height: 2.5em;
 }
 
+.greeting{
+    position: absolute;
+    left: 40px;
+    bottom: 50px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color:grey
+}
+
+
 /* Home Navigation Bar*/
 .NavDiv {
     position: relative;

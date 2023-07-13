@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import axios from "axios";
+import Cookie from "js-cookie";
 
 class AddPlayerForm extends Component {
     constructor(props) {
@@ -91,6 +92,22 @@ class AddPlayerForm extends Component {
         window.location = '/football';
     }
     
+    async componentDidMount(){
+        //Authentication Functionality
+        if(Cookie.get("jwt")==null) {
+            // navigate("/login");
+            window.location = '/login';
+        }else{
+        const data = await axios.post("http://localhost:5000", {}, {withCredentials:true});
+        if(!data) {
+                // removeCookie("jwt");
+                // navigate("/login");
+                window.location = '/login';
+        }else{
+            console.log(data.data.user);
+            this.setState({email: data.data.user});
+        }}
+    }
 
     render() {
 

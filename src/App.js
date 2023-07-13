@@ -6,6 +6,8 @@ import PlayerDetails from './components/sports/Football/singlePlayer/PlayerDetai
 import UpdatePlayer from './components/sports/Football/updateSinglePlayer/UpdatePlayer';
 import React from 'react';
 import './App.css';
+import Login from './components/login';
+import Register from './components/registration';
 
 
 
@@ -19,6 +21,8 @@ function App() {
           <Route path='/footballAddPlayer' element={<AddPlayerForm></AddPlayerForm>}></Route>
           <Route path='/singlefootballplayer/:id' element={<PlayerDetails></PlayerDetails>}></Route>
           <Route path='/updatefootballplayer/:id' element={<UpdatePlayer></UpdatePlayer>}></Route>
+          <Route path='/login' element={<Login></Login>}></Route>
+          <Route path='/registration' element={<Register></Register>}></Route>
         </Routes>
       </div>
     </Router>

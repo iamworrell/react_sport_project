@@ -1,6 +1,7 @@
 import withRouterUpdate from "./withRouterUpdate";
 import React, {Component} from "react";
 import axios from "axios";
+import Cookie from "js-cookie";
 
 
 class UpdatePlayer extends Component {
@@ -67,9 +68,24 @@ class UpdatePlayer extends Component {
         this.setState({bio: e.target.value});
     }
 
-    componentDidMount() {
-        axios.get(`http://localhost:5000/football/singlefootballplayer/${this.props.params.id}`)
-            .then(result => this.setState({currentPlayer: result.data}))
+    async componentDidMount() {
+        await axios.get(`http://localhost:5000/football/singlefootballplayer/${this.props.params.id}`)
+            .then(result => this.setState({currentPlayer: result.data}));
+
+        //Authentication Functionality
+        if(Cookie.get("jwt")==null) {
+            // navigate("/login");
+            window.location = '/login';
+        }else{
+        const data = await axios.post("http://localhost:5000", {}, {withCredentials:true});
+        if(!data) {
+                // removeCookie("jwt");
+                // navigate("/login");
+                window.location = '/login';
+        }else{
+            console.log(data.data.user);
+            this.setState({email: data.data.user});
+        }}
     }
 
     async onSubmitHandler(e) {
